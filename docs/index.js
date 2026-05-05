@@ -15,8 +15,8 @@ const app = initializeApp(FIREBASE_CONFIG);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 
-onAuthStateChanged(auth, (authUser) => {
-  renderForLoginStatus(authUser);
+onAuthStateChanged(auth, async (authUser) => {
+  await renderForLoginStatus(authUser);
 });
 
 buttonLogin.addEventListener("click", async () => {
@@ -27,9 +27,11 @@ buttonLogin.addEventListener("click", async () => {
   }
 });
 
-function renderForLoginStatus(authUser) {
+async function renderForLoginStatus(authUser) {
   if (authUser) {
-    spanLoginStatus.textContent = `Logged in as ${authUser.displayName} (${authUser.email})`;
+    const idTokenResult = await authUser.getIdTokenResult();
+    const can = idTokenResult.claims.available ? "can" : "CANNOT";
+    spanLoginStatus.textContent = `Logged in as ${authUser.displayName} (${authUser.email}) - You ${can} access this service.`;
   } else {
     spanLoginStatus.textContent = "Not logged in";
   }
