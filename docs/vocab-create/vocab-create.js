@@ -39,5 +39,5 @@ function getVocabFromForm() {
   const sentence = formVocab.sentence.value.trim();
   const url = formVocab.url.value.trim();
 
-  return [word, { sentence, url }];
+  return [word, { usages: [{ sentence, url }] }];
 }
