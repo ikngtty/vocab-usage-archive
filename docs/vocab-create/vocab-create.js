@@ -33,7 +33,11 @@ buttonCreate.addEventListener("click", async () => {
 });
 
 function getVocabFromForm() {
-  const word = encodeURIComponent(formVocab.word.value.trim()); // TODO: Is this valid for firestore document ID?
+  // TODO: Make this valid for firestore document ID.
+  // - Less than or equal to 1500 bytes.
+  // - Cannot be `.` or `..`.
+  // - Cannot be `__.*__`.
+  const word = encodeURIComponent(formVocab.word.value.trim());
   const sentence = formVocab.sentence.value.trim();
   const url = formVocab.url.value.trim();
 
