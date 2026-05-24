@@ -2,6 +2,8 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../shared/common.css">
     <script type="module" src="./vocab-create.js"></script>
     <title>Vocab Usage Archive - Create Vocabulary Data</title>
   </head>
@@ -12,9 +14,15 @@
     <h1>Create Vocabulary Data</h1>
 
     <form id="formVocab">
-      Word: <input type="text" name="word" disabled><br>
-      Sentence: <input type="text" name="sentence"><br>
-      URL: <input type="text" name="url"><br>
+      <label for="inputWord">Word</label>
+      <input type="text" id="inputWord" name="word" disabled>
+
+      <label for="inputSentence">Sentence</label>
+      <textarea id="inputSentence" name="sentence"></textarea>
+
+      <label for="inputUrl">URL</label>
+      <input type="text" id="inputUrl" name="url" inputmode="url">
+
       <button type="button" id="buttonCreate">Create</button>
     </form>
   </body>
