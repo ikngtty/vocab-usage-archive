@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../shared/common.css">
+    <script type="module" src="./vocab-update.js"></script>
+    <title>Vocab Usage Archive - Update Vocabulary Data</title>
+  </head>
+
+  <body>
+    <a href="..">Back To Home</a>
+
+    <h1>Update Vocabulary Data</h1>
+
+    <form id="formVocab">
+      <label for="inputWord">Word</label>
+      <input type="text" id="inputWord" name="word" disabled>
+
+      <template id="templateFieldsetUsage">
+        <fieldset class="fieldsetUsage">
+          <label>Sentence</label>
+          <textarea name="sentence"></textarea>
+
+          <label>URL</label>
+          <input type="text" name="url" inputmode="url">
+
+          <button type="button" class="buttonRemoveUsage">Remove</button>
+        </fieldset>
+      </template>
+
+      <div id="listUsage"></div>
+
+      <button type="button" id="buttonAddUsage">Add Usage</button>
+
+      <button type="button" id="buttonUpdate">Update</button>
+    </form>
+  </body>
+</html>

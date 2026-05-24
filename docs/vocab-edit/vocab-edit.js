@@ -21,7 +21,7 @@ buttonSend.addEventListener("click", async () => {
   const vocabRef = getDocRefOfVocab(db, auth.currentUser.uid, word);
   const vocabSnap = await getDocFromServer(vocabRef); // TODO: Handle error.
   if (vocabSnap.exists()) {
-    alert("Go to update page. (WIP)");
+    location.href = `../vocab-update?word=${word}`;
   } else {
     location.href = `../vocab-create?word=${word}`;
   }

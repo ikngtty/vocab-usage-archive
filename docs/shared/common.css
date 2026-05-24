@@ -75,6 +75,11 @@ button:active {
   opacity: 0.85;
 }
 
+fieldset {
+  margin-bottom: 16px;
+  border-radius: 8px;
+}
+
 hr {
   border: none;
   border-top: 1px solid #ddd;
