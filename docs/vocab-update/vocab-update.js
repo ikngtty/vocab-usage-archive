@@ -43,6 +43,10 @@ init: {
   });
 }
 
+formVocab.addEventListener("submit", (event) => {
+  event.preventDefault();
+});
+
 buttonAddUsage.addEventListener("click", () => {
   addUsageFieldset();
 });

@@ -7,7 +7,6 @@ import { createDocWithTs } from "../shared/firestore_util.js";
 import { getDocRefOfVocab } from "../shared/repository.js";
 
 const formVocab = document.getElementById("formVocab");
-const buttonCreate = document.getElementById("buttonCreate");
 
 const app = initializeApp(FIREBASE_CONFIG);
 const auth = getAuth(app);
@@ -23,7 +22,9 @@ const db = getFirestore(app);
   formVocab.word.value = decodeURIComponent(word);
 }
 
-buttonCreate.addEventListener("click", async () => {
+formVocab.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
   const [word, vocab] = getVocabFromForm();
   const vocabRef = getDocRefOfVocab(db, auth.currentUser.uid, word);
   // TODO: Check if the vocab already exists.

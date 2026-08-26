@@ -9,13 +9,14 @@ import { CONFIG as FIREBASE_CONFIG } from "../shared/firebase_util.js";
 import { getDocRefOfVocab } from "../shared/repository.js";
 
 const formWord = document.getElementById("formWord");
-const buttonSend = document.getElementById("buttonSend");
 
 const app = initializeApp(FIREBASE_CONFIG);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-buttonSend.addEventListener("click", async () => {
+formWord.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
   // TODO: Login and available check.
   const word = encodeURIComponent(formWord.word.value.trim()); // TODO: Validate.
   const vocabRef = getDocRefOfVocab(db, auth.currentUser.uid, word);
