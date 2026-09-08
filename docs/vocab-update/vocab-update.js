@@ -5,6 +5,7 @@ import {
   getFirestore,
 } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
 
+import { customAlert, customConfirm } from "../shared/dialog_util.js";
 import { CONFIG as FIREBASE_CONFIG } from "../shared/firebase_util.js";
 import { updateDocWithTs } from "../shared/firestore_util.js";
 import { getDocRefOfVocab } from "../shared/repository.js";
@@ -31,7 +32,7 @@ init: {
   const vocabRef = getDocRefOfVocab(db, auth.currentUser.uid, word);
   const vocabSnap = await getDocFromServer(vocabRef); // TODO: Handle error.
   if (!vocabSnap.exists()) {
-    alert("The vocab does not exist.");
+    customAlert("The vocab does not exist.");
     // TODO
     break init;
   }
@@ -56,17 +57,19 @@ buttonUpdate.addEventListener("click", async () => {
   const vocabRef = getDocRefOfVocab(db, auth.currentUser.uid, word);
   // TODO: Check if the vocab already exists.
   await updateDocWithTs(vocabRef, vocab); // TODO: Handle error.
-  alert("Updated!");
+  await customAlert("Updated!");
 });
 
 function addUsageFieldset() {
   const fieldset =
     templateFieldsetUsage.content.firstElementChild.cloneNode(true);
-  fieldset.querySelector(".buttonRemoveUsage").addEventListener("click", () => {
-    if (confirm("Remove this usage?")) {
-      fieldset.remove();
-    }
-  });
+  fieldset
+    .querySelector(".buttonRemoveUsage")
+    .addEventListener("click", async () => {
+      if (await customConfirm("Remove this usage?")) {
+        fieldset.remove();
+      }
+    });
   listUsage.appendChild(fieldset);
   return fieldset;
 }
